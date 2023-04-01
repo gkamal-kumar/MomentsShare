@@ -1,0 +1,25 @@
+<%- layout('layouts/boilerplate') %>
+<%- include('../partials/navbar2') %>
+<%- include('../partials/flash') %>
+    <div class="container mt-3">
+        <h1 class="text-center my-4 bg-secondary bg-gradient fs-1 p-2 shadow-lg text-white border-rounded  ">Add a New Friend</h1>
+        <% for(let user of allusers){ %>
+            <% if(usn==null || usn.username !==user.username){ %>
+                <li>
+                    <%= user.username %>
+                </li>
+                    <% if(passport){ %>
+                        <form action="/users/add" method="post">
+                            <input type="hidden" id="friend_id" name="friend_id" value="<%= user.id  %>">
+                            <button type="submit my-2" class="btn btn-primary">Add Friend</button>
+                        </form>
+                    <% } %>
+                <hr>
+                <% } %>
+         <% }%>
+         <% if(allusers.length == 1){ %>
+            <div class="container">
+                <h6 class="text-muted fw-light">No more Users</h6>
+            </div>
+        <% } %>
+    </div>

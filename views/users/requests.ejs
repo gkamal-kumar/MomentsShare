@@ -1,0 +1,23 @@
+<%- layout('layouts/boilerplate') %>
+<%- include('../partials/navbar2') %>
+<%- include('../partials/flash') %>
+    <div class="container mt-3">
+        <h1 class="text-center my-3 bg-secondary bg-gradient p-2 shadow-lg text-white border-rounded  ">Requests</h1>
+        <% for(let user of allconnects){ %>
+                    <% if(passport){ %>
+                        <li>
+                            <%= user.username %>
+                        </li>
+                        <form action="/users/requests" method="post">
+                            <input type="hidden" id="friend_id" name="friend_id" value="<%= user.id  %>">
+                            <button type="submit my-2" class="btn btn-primary">Accept Request</button>
+                        </form>
+                        <hr>
+                    <% } %>
+         <% }%>
+         <% if(!allconnects.length){ %>
+            <div class="container">
+                <h6 class="text-muted fw-light">No Requests</h6>
+            </div>
+        <% } %>
+    </div>

@@ -1,0 +1,72 @@
+<%- layout('layouts/boilerplate') %>
+     <%- include('../partials/navbar2') %>
+     <%- include('../partials/flash') %>
+    <div class="container">
+        <div class="container mt-5 border-3">
+            <div class="row">
+                <div class="col-6 offset-3">
+                    <h1 class="mx-auto  text-center ">New Post</h1>
+                </div>
+            </div>
+            <form action="/posts"  method="post" class="validated-form" novalidate enctype="multipart/form-data">
+                <div class="row">
+                    <div style="display:block;" id="inputFields" class="form-outline mb-4 col-6 offset-3 mx-auto">
+                        <label class="form-label fs-5 text-primary" for="title">Enter Title</label>
+                        <input id="title" name="Event[title]" class="form-control"
+                            placeholder="My_title" rows="15"  required>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div style="display:block;" id="inputFields" class="form-outline mb-4 col-6 offset-3 mx-auto">
+                        <label class="form-label fs-5 text-primary" for="title">Image Url</label>
+                        <input id="image" name="image" type="file" class="form-control"
+                             rows="15" multiple >
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div style="display:block;" id="inputFields" class="form-outline mb-4 col-6 offset-3 mx-auto">
+                        <label class="form-label fs-5 text-primary" for="message"> About</label>
+                        <textarea id="message" name="Event[message]" class="form-control"
+                            rows="15"  required> </textarea> 
+                    </div>
+                </div>
+               
+
+                <div class="row">
+                    <div style="display:block;" class="form-outline mb-4 col-6 offset-3 mx-auto" id="inputFields">
+                     
+
+                        <div class=" accordion accordion-flush my-3" id="accordionFlushExample">
+                            <div class=" accordion-item">
+                              <h2 class="accordion-header  " id="flush-headingOne">
+                                <button class="accordion-button collapsed bg-light bg-gradient border border-2 rounded" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                                    Tag to
+                                </button>
+                              </h2>
+                              <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                    <% if(friends){ %>
+                                        <% for(let friend of friends){ %>
+                                          <div class="form-check form-switch">
+                                               <input class="form-check-input" type="checkbox" id="<%= friend._id  %>" name="<%= friend.username   %>">
+                                            <label class="form-check-label" for="flexSwitchCheckDefault"><%= friend.username  %></label>
+                                      </div>
+                                      <% } %>
+                                    <% } %>
+                                    <% if(!friends){ %>
+                                        <h4>No Friends</h4>
+                                        <a href="/users/add">Add New Friends</a>
+                                    <% } %>
+                                </div>
+                              </div>   
+                            </div>
+                        </div>
+                        <button type="submit" style="display:block;" class="btn btn-primary btn-block mb-4 mx-auto">Add a new Post</button>
+                 </div>
+        </form>
+    </div>
+    </div>
+

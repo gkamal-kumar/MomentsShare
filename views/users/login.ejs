@@ -1,0 +1,44 @@
+<%- layout('layouts/boilerplate') %>
+<div class="container  border-primary border-3">
+<div class="container mt-5 ">
+    <h1 class="my-3 text-muted fw-light text-center">Project-KK</h1>
+    <div class="row mt-2" >
+        <div class="col-6 offset-3 mt-2">
+            <h1 class="mx-auto text-center ">LOGIN</h1>
+        </div>
+        <div class="col-6 offset-3 my-2" style="display:block;">
+            <%- include('../partials/flash')  %>
+        </div>
+    </div>
+    <form action="/login" method="post" novalidate class="validated-form">
+        
+        <div class="row">
+            <div style="display:block;" id="inputFields" class="form-outline mb-4 col-6 offset-3 mx-auto">
+                <label class="form-label text-primary" for="username">Enter Username</label>
+                <input type="text" id="username" name="username" class="form-control"
+                    placeholder="Enter Username" required />
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <!-- Password input -->
+            <div style="display:block;" id="inputFields" class="form-outline mb-4 col-6 offset-3 mx-auto">
+                <label class="form-label text-primary" for="Password">Enter Password</label>
+                <input type="password" id="password" name="password" class="form-control"
+                    placeholder="Enter password" required />
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+        </div>
+            <button type="submit" style="display:block;" class="btn btn-primary btn-block mb-4 mx-auto">Log In </button>
+        </form>
+
+        <a class="mx-4" href="/users/register">Register</a>
+        <a class="mx-4" href="/">Home</a>
+        </div>
+    </div>
+
+    <script src="/js/validateforms.js"></script>

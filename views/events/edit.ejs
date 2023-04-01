@@ -1,0 +1,57 @@
+<%- layout('layouts/boilerplate') %>
+     <%- include('../partials/navbar2') %>
+     <%- include('../partials/flash') %>
+    <div class="container">
+        <h1 class="text-center my-3 p-3 ">Edit your Post</h1>
+                <form action="/posts/<%= post._id  %>?_method=PUT " method="post" enctype="multipart/form-data" >
+                    <div class="row">
+                        <div style="display:block;" id="inputFields" class="form-outline mb-4 col-6 offset-3 mx-auto">
+                            <label class="form-label fs-5 text-primary" for="title">My Title</label>
+                            <input  id="title" name="title" class="form-control"
+                             rows="15"  value="<%= post.title  %>" required>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div style="display:block;" id="inputFields" class="form-outline mb-4 col-6 offset-3 mx-auto">
+                            <label class="form-label fs-5 text-primary" for="title">Add more Image (s)</label>
+                            <input id="image" name="image" type="file" class="form-control"
+                                rows="15" multiple >
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div style="display:block;" id="inputFields" class="form-outline mb-4 col-6 offset-3 mx-auto">
+                            <label class="form-label fs-5 text-primary" for="message">Change your Note</label>
+                            <textarea  id="message" name="newmsg" class="form-control"
+                             rows="15"  required><%=post.message %></textarea>
+                        </div>
+                    </div>
+
+                    
+                    <div class="row">
+                        <div style="display:block;" id="inputFields" class="form-outline mb-4 col-6 offset-3 mx-auto">
+                            <label class="form-label fs-5 text-primary" for="message">Update Images</label>
+                        </div>
+                    </div>
+                    <div class="row form-check checkbox-lg">
+                        <% post.images.forEach(function(img,i) {%>
+                        <div style="display:block;" id="inputFields"  class="form-outline mb-4 col-6 offset-3 mx-auto">
+                           <img class=" mx-auto img-thumbnail"src="<%= img.thumbnail  %>" alt=""  style="display: block;" >
+                           <div class="mx-auto my-4">
+                           <div class="form-check-inline">
+                                <input type="checkbox" id="image-<%= i%> " name="deleteImages[]" value="<%= img.filename%>" >
+                           </div>
+                           <label class="mx-auto fs-6 text-muted "for="image-<%= i %>">Delete ?</label>
+                           <hr>
+                           </div>
+                        </div>
+                        <% } )%>
+                    </div>
+                    
+
+                    
+                    <button type="submit" style="display:block;" class="btn btn-primary btn-block my-4 mx-auto">Update Post</button>
+                </form>
+    </div>
+    <script src="/js/validateforms.js"></script>

@@ -1,0 +1,53 @@
+<%- layout('layouts/boilerplate') %>
+<%- include('../partials/flash') %>
+    <div class="container">
+        <h1 class="my-3 text-muted fw-light text-center">Project-KK</h1>
+        <div class="container mt-5 border-3">
+            <div class="row">
+                <div class="col-6 offset-3">
+                    <h1 class="mx-auto text-center">SIGNUP</h1>
+                </div>
+            </div>
+           
+            <form action="/users"  method="post" class="validated-form" novalidate>
+        
+                <div class="row">
+                    <div style="display:block;" id="inputFields" class="form-outline mb-4 col-6 offset-3 mx-auto">
+                        <label class="form-label text-primary" for="Username">Enter Name</label>
+                        <input type="text" id="Username" name="User[username]" class="form-control"
+                            placeholder="Enter username" required />
+                    </div>
+                </div>
+                <div class="row">
+                    
+                    <div style="display:block;" id="inputFields" class="form-outline mb-4 col-6 offset-3 mx-auto">
+                        <label class="form-label text-primary" for="Password">Enter Password</label>
+                        <input type="password" id="Password" name="User[password]" class="form-control"
+                            placeholder="Enter password" required />
+                    </div>
+                </div>
+               
+                <div class="row">
+                    <div style="display:block;" id="inputFields" class="form-outline mb-4 col-6 offset-3 mx-auto">
+                        <label class="form-label text-primary" for="Email">Email address</label>
+                        <input type="email" id="Email" name="User[email]" class="form-control" placeholder="Enter email"
+                            required />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div style="display:block;" id="inputFields" class="form-outline mb-4 col-6 offset-3 mx-auto">
+                        <label class="form-label text-primary" for="description">Bio</label>
+                        <textarea id="bio" name="User[bio]" class="form-control" placeholder="Add Bio"
+                            required></textarea>
+                    </div>
+                </div>
+       
+                 <button type="submit" style="display:block;" class="btn btn-primary btn-block mb-4 mx-auto">Sign in</button>
+                
+                <a class="mx-4" href="/login">Login</a>
+                <a class="mx-4" href="/ ">Home</a>
+        </form>
+    </div>
+    </div>
+    <script src="/js/validateforms.js"></script>

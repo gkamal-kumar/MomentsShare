@@ -1,0 +1,26 @@
+<%- layout('layouts/boilerplate') %>
+<%- include('../partials/navbar2') %>
+    <div class="container">
+        <% if(user.profilepic){ %>
+            <h1 class="my-3 text-muted fw-light text-center">Upload Profile Picture</h1>
+        <% } %>
+         <% if(!user.profilepic){ %>
+        <h1 class="my-3 text-muted fw-light text-center">Upload new Profile Picture</h1>
+        <% } %>
+        <div class="container mt-5 border-3">
+            <%- include('../partials/flash')  %>
+           
+            <form action="/users/addpic"  method="post" class="validated-form" novalidate enctype="multipart/form-data">
+                <div class="row">
+                    <div style="display:block;" id="inputFields" class="form-outline mb-4 col-6 offset-3 mx-auto">
+                        <input type="file" id="image" name="image" class="form-control"
+                            placeholder="Upload Profile Pictures" required />
+                    </div>
+                </div>
+                 <button type="submit" style="display:block;" class="btn btn-primary btn-block mb-4 mx-auto">Upload</button>
+                
+                <a class="mx-4" href="/users/<%= user._id  %>">Back to Profile</a>
+        </form>
+    </div>
+    </div>
+    <script src="/js/validateforms.js"></script>

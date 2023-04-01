@@ -1,0 +1,88 @@
+<%- layout('layouts/boilerplate') %>
+  <%- include('../partials/navbar2') %>
+  <%- include('../partials/flash') %>
+    <div class="container">
+    <h1 class="text-center my-4 text-primary"><%= post.title  %></h1>
+    <div id="Postcarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <% post.images.forEach((image,i) =>{ %>
+                 <div class="carousel-item <%= i === 0 ? 'active' : ''  %>">
+                    <a href="<%= image.url  %>" download="value.png">
+                         <img id="postimg" src="<%= image.url %>" alt="<%= image.filename  %>"  class="mx-auto  d-block w-98 my-3  border border-5 rounded border-light" style="display:block;max-height: 70vh">                   
+                    </a>
+                </div>      
+                <% }) %>
+        </div>
+        <% if(post.images.length >1) {%>
+            <button class="carousel-control-prev" type="button" data-bs-target="#Postcarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon text-black" aria-hidden="true"></span>
+            <span class="visually-hidden  ">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#Postcarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon text-black" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        <% } %>
+    </div>
+    <p class="p-3 text-muted"><%= post.message  %></p>
+    <h4>Posted by <span class="text-primary"><%= post.user.username  %></span></h4>
+    <div class=" accordion accordion-flush my-3" id="accordionFlushExample">
+        <div class=" accordion-item">
+          <h2 class="accordion-header  " id="flush-headingOne">
+            <button class="accordion-button collapsed bg-light bg-gradient border border-2 rounded" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                Shared with
+            </button>
+          </h2>
+          <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">
+                <% for(let friend of post.friendtags) { %>
+                    <li><%= friend.username %></li>
+                <% } %>
+            </div>
+          </div>
+          <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+            <div>
+           <% if(!post.friendtags.length){ %>
+            <h5 class="mx-3 fs-6">No Tags</h5>
+            <% } %>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <h3 class="text-primary my-3">Comments</h3>
+        <div style="display:block;" id="inputFields" class="form-outline m-2  mb-4 col-6 offset-3 mx-auto">
+            <% for(let review of reviews){ %>
+                <h6><%= review.message %></h6>
+                <p  class="text-primary"><%= review.reviewby.username  %></p>
+                <% if(passport){ %>
+                    <% if(currUser.username == post.user.username || currUser.username == review.reviewby.username) {%>
+                         <form action="/review/<%=review._id%>?_method=DELETE " method="post">
+                             <button type="submit" style="display:block;" class="btn btn-primary btn-block my-4 ">Delete</button>
+                        </form>
+                    <% } %>
+                <% } %>
+                <hr>
+            <% } %>
+            <% if(!reviews.length){ %>
+                <h5>No Comments</h5>
+            <% } %>
+        </div>
+    </div>
+    <% if(passport){ %>
+    <form action="/review/new" method="post">
+        <input type="hidden" id="post_id" name="post_id" value="<%= post._id  %>">
+        <div class="row">
+            <div style="display:block;" id="inputFields"   class="form-outline  mb-4 col-6 offset-3 mx-auto">
+                <h5>Add a New Comment</h5>
+                <textarea id="message" name="review[message]" class="form-control" placeholder="Add a Review..." required></textarea>
+            </div>
+        </div>
+        <button type="submit" style="display:block;" class="btn btn-primary btn-block mb-4 mx-auto">Submit</button>
+    </form>
+    <% } %>
+    <% if(post.user.username == currUser.username){ %>
+    <a class="p-3" href="/posts/edit/<%= post._id  %> ">Update Post</a>
+    <% } %>
+    </div>

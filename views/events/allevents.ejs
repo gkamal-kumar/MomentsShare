@@ -1,0 +1,49 @@
+<%- layout('layouts/boilerplate') %>
+    <%- include('../partials/navbar2') %>
+    <%- include('../partials/flash') %>
+        <div class="container ">
+            <h1 class="text-center my-4 bg-secondary bg-gradient p-2 shadow-lg text-white border-rounded  ">My Posts</h1>
+            <% if(passport){ %>
+
+            <% for(let post of posts){ %>
+                <div class="card p-3" >
+                  <h1 class="text-center text-primary my-2"><%= post.title  %></h1>
+                    <p class="text-break fw-light"><%= post.message  %></p>
+                    <div class=" accordion accordion-flush my-3" id="accordionFlushExample">
+                        <div class=" accordion-item">
+                          <h2 class="accordion-header  " id="flush-headingOne">
+                            <button class="accordion-button collapsed bg-light bg-gradient border border-2 rounded" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                                Shared with
+                            </button>
+                          </h2>
+                          <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                <% for(let friend of post.friendtags) { %>
+                                    <li><%= friend.username %></li>
+                                <% } %>
+                            </div>
+                          </div>
+                          <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                            <div>
+                           <% if(!post.friendtags.length){ %>
+                            <h5 class="mx-4 fs-6">No Tags</h5>
+                            <% } %>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                    <a class="mx-2 my-1" href="/posts/<%= post._id  %> ">More</a>
+                    <a class="mx-2" href="/posts/edit/<%= post._id  %> ">Update Post</a>
+                    <form action="/posts/<%=post._id%>?_method=DELETE " method="post">
+                        <button type="submit" style="display:block;" class="btn btn-primary btn-block my-4 ">Delete Post</button>
+                    </form>
+                </div>
+                <hr> 
+              <% } %>  
+                <% if(!posts.length){ %>
+                  <h6 class="text-muted fs-6 fw-light">No Posts</h6>
+                 <a href="/posts/new">Add New Post</a>
+                <% } %>
+            <% } %>    
+        </div>
+

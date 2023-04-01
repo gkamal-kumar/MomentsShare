@@ -1,0 +1,36 @@
+<%- layout('layouts/boilerplate') %>
+   <%- include('../partials/navbar2') %>
+   <%- include('../partials/flash') %>
+        <div class="container">
+            <h1 class="text-center my-4 bg-secondary bg-gradient p-2 shadow-lg text-white border-rounded ">Shared Posts</h1>
+            <% if(passport){ %>
+              <% if(!sharedposts.length){ %>
+                <h6 class="text-muted fw-light">No Shared Posts</h6>
+                <% } %>
+            <% for(let post of sharedposts){ %>
+                <div class="card p-3" >
+                   <h1 class="text-center text-primary my-2"><%= post.title  %></h1>
+                    <p class="fw-light"><%= post.message  %></p>
+                    <h4>Posted by <span class="text-primary"><%= post.user.username  %></span></h4>
+                    <div class=" accordion accordion-flush my-3" id="accordionFlushExample">
+                        <div class=" accordion-item">
+                          <h2 class="accordion-header  " id="flush-headingOne">
+                            <button class="accordion-button collapsed bg-light bg-gradient border border-2 rounded" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                                Shared with
+                            </button>
+                          </h2>
+                          <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                <% for(let friend of post.friendtags) { %>
+                                    <li><%= friend.username %></li>
+                                <% } %>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                    <a href="/posts/<%= post._id  %>">More</a>
+                </div>
+                <hr> 
+             <% } %>      
+            <% }%>
+        </div>
