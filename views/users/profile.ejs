@@ -20,14 +20,14 @@
                 
             </div>
             <div class="col" id="Info">
-                <div class="container my-3">
-                    <h1 ><%= user.username  %> </h1>
-                    <h5 style="font-size: medium;padding-left:5%;"><%= user.bio %> </h5>
+               <div class="container my-3">
+                    <h1 style="font-size: 2.5rem;"><%= user.username  %> </h1>
+                    <h5 class="text-muted" style="font-size: 1.5rem;padding-left:5%;"><%= user.bio %> </h5>
+                    <h5 class="text-muted" style="font-size: 1rem;padding-left:5%;"> <%= user.email %> </h5>
                 </div>
                 <ul>
                     <h4 class="my-2 text-primary">Friends: <%= Friends.length  %></h4>
                     <% if(Curruser.username == user.username) {%>
-                    <h5 class="text-muted">Friends</h5>
                     <% for(let friend of Friends){ %>
                          <li><%= friend.username  %></li>
                          <a href="/users/<%= friend._id  %>">Friend_Profile</a>
