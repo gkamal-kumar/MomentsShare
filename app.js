@@ -137,6 +137,7 @@ app.use('/review', reviewroutes);
 
 
 app.get('/login', (req, res) => {
+     req.body.username = req.body.username.trim();
     res.render('./users/login');
 })
 
