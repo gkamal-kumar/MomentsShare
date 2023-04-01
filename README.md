@@ -1,7 +1,6 @@
 # ProjectKK
 Hey guyss..
-ProjectKK is a platform for storing your memories with your friends and family and posting with your community upon tagging them.
-I used bootstrap for front-end , express for the server and the mongodb as a database in back-end.
-To have a glimpse on my project -
-Do visit this site ,
+ProjectKK allows you to share your memories with your community by tagging your friends and family in the post and serves as a diary of memories.
+I used mongodb as a database in the back-end, express as the server, and bootstrap for the front-end.
+Visit this site ,
 Link : https://project-kk.onrender.com
