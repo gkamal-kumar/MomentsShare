@@ -83,9 +83,9 @@ router.get('/register',(req, res) => {
 
 router.post('/',validateusers,catchAsync( async (req, res) => {
     const Users = req.body.User;
-     Users.username = Users.username.trim();
+    Users.username = Users.username.trim();
     const newConnection = new Userconnect();
-    const user = new User({ email: Users.email, bio: Users.bio, username: Users.username });
+    const user = new User({ email: Users.email, bio: Users.bio, username: Users.username ,Status: Users.status });
     const newUser = await User.register(user, Users.password);
     newUser.Connections = newConnection;
     await newUser.save();
@@ -97,6 +97,7 @@ router.post('/',validateusers,catchAsync( async (req, res) => {
     }
     res.redirect('/home');
 }))
+
 
 router.get('/friends',isLoggedin, catchAsync(async (req, res) => {
     const passport = req.session.passport;
