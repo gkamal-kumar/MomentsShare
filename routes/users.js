@@ -82,7 +82,6 @@ router.get('/register',(req, res) => {
 })
 
 router.post('/',validateusers,catchAsync( async (req, res) => {
-    console.log(req.body.User);
     const Users = req.body.User;
     Users.username = Users.username.trim();
     const newConnection = new Userconnect();
