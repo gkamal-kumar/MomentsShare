@@ -82,10 +82,11 @@ router.get('/register',(req, res) => {
 })
 
 router.post('/',validateusers,catchAsync( async (req, res) => {
+    console.log(req.body.User);
     const Users = req.body.User;
     Users.username = Users.username.trim();
     const newConnection = new Userconnect();
-    const user = new User({ email: Users.email, bio: Users.bio, username: Users.username ,Status: Users.status });
+    const user = new User({ email: Users.email, bio: Users.bio, username: Users.username ,Status: Users.Status });
     const newUser = await User.register(user, Users.password);
     newUser.Connections = newConnection;
     await newUser.save();
