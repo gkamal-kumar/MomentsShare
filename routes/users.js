@@ -158,9 +158,17 @@ router.post('/add',isLoggedin,catchAsync( async (req, res) => {
         const usname = req.session.passport.user;
         const user = await User.findByUsername(usname);
         const Connection = await Userconnect.findOne({ Curruser: user });
-        Connection.requests.push(frienduser);
+        if (frienduser.Status == 'public') {
+            Connection.friends.push(frienduser);
+            const friendConnection = await Userconnect.findOne({ Curruser: frienduser });
+            friendConnection.friends.push(user);
+            await friendConnection.save();
+            req.flash('success', 'Friend Added');
+        } else {
+            Connection.requests.push(frienduser);
+            req.flash('success', 'Request Sent');
+        }
         await Connection.save();
-        req.flash('success', 'Request Sent');
         res.redirect('/users/add');
     } else {
         res.redirect('/login');
