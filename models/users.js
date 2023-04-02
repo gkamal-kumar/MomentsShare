@@ -19,7 +19,10 @@ const userSchema = new Schema({
     Posts: [{
         type: Schema.Types.ObjectId,
         ref: 'Event'
-    }]
+    }],
+    Status: {
+        type: String
+    }
 })
 
 userSchema.plugin(passportLocalMongoose);
