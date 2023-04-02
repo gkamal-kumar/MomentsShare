@@ -8,15 +8,15 @@
                 <li>
                     <%= user.username %>
                 </li>
-                    <% if(passport){ %>
+                     <% if(passport){ %>
                         <form action="/users/add" method="post">
                             <input type="hidden" id="friend_id" name="friend_id" value="<%= user.id  %>">
+                            <% if(user.Status == 'public'){ %>
+                                <a class="mt-8 p-2" style="display:block;"href="/users/<%= user._id  %>">Profile</a>
+                            <% } %>
                             <button type="submit my-2" class="btn btn-primary">Add Friend</button>
                         </form>
                     <% } %>
-                     <% if(user.Status == 'public'){ %>
-                            <a href="/users/<%= user._id  %>">Profile</a>
-                     <% } %>
                 <hr>
                 <% } %>
          <% }%>
