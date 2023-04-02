@@ -14,6 +14,9 @@
                             <button type="submit my-2" class="btn btn-primary">Add Friend</button>
                         </form>
                     <% } %>
+                     <% if(user.Status == 'public'){ %>
+                            <a href="/users/<%= user._id  %>">Profile</a>
+                     <% } %>
                 <hr>
                 <% } %>
          <% }%>
