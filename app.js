@@ -118,7 +118,7 @@ app.get('/home', async (req, res) => {
         friendposts = [];
         for (let item of posts) {
             for (let friend of friends) {
-                if (friend.username == item.user.username) {
+                if (item.Status == "public" && friend.username == item.user.username) {
                     friendposts.push(item);
                 }
             }
