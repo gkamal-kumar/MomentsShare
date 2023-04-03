@@ -106,14 +106,13 @@ router.get('/shared',isLoggedin,catchAsync(  async (req, res) => {
                 for (let Post of Posts) {
                     Post = await Events.findById(Post).populate('user').populate('friendtags');
                     const tags = Post.friendtags;
-                      if (Post.friendtags) {
-                       for (let tag of tags) {
+                    console.log(Post);
+                    for (let tag of tags) {
                         if (tag.username == usr.username) {
                             sharedposts.push(Post);
                             break;
                        }
-                      }
-                      }
+                   }
                 }
         } 
     }
