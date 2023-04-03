@@ -17,6 +17,7 @@
                     </div>
                 </div>
 
+
                 <div class="row">
                     <div style="display:block;" id="inputFields" class="form-outline mb-4 col-6 offset-3 mx-auto">
                         <label class="form-label fs-5 text-primary" for="title">Image Url</label>
@@ -34,11 +35,11 @@
                     </div>
                 </div>
                
+                
+
 
                 <div class="row">
                     <div style="display:block;" class="form-outline mb-4 col-6 offset-3 mx-auto" id="inputFields">
-                     
-
                         <div class=" accordion accordion-flush my-3" id="accordionFlushExample">
                             <div class=" accordion-item">
                               <h2 class="accordion-header  " id="flush-headingOne">
@@ -46,7 +47,7 @@
                                     Tag to
                                 </button>
                               </h2>
-                              <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                            <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                                 <div class="accordion-body">
                                     <% if(friends){ %>
                                         <% for(let friend of friends){ %>
@@ -64,9 +65,26 @@
                               </div>   
                             </div>
                         </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div style="display:block;" class="form-outline mb-4 col-6 offset-3 mx-auto" id="inputFields">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="private" name="private">
+                                <label class="form-check-label" for="flexSwitchCheckDefault">Private Post</label>
+                             </div>
+                        </div>
+                 </div>
+
+                <div class="row">
+                        <div style="display:block;" class="form-outline mb-4 col-6 offset-3 mx-auto" id="inputFields">         
                         <button type="submit" style="display:block;" class="btn btn-primary btn-block mb-4 mx-auto">Add a new Post</button>
                  </div>
         </form>
     </div>
     </div>
+
+
 
