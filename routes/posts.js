@@ -49,6 +49,11 @@ router.post('/',isLoggedin,upload.array('image'), catchAsync( async(req, res) =>
             }
         }
         us.Posts.push(post);
+        if (data[private] == 'on') {
+            post.Status = "private";
+        } else {
+            post.Status = "public";
+        }
         await post.save();
         await us.save();
         req.flash('success','Successfully Created New Post !!');
