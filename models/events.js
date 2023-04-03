@@ -33,7 +33,10 @@ const eventSchema = new Schema({
     reviews: [{
         type: Schema.Types.ObjectId,
         ref: 'Review'
-    }]
+    }],
+    Status: {
+        type:String
+    }
 })
 const Event = mongoose.model('Event', eventSchema);
 
