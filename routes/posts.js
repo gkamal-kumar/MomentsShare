@@ -30,6 +30,7 @@ router.get('/new',isLoggedin, catchAsync( async(req, res) => {
 
 router.post('/',isLoggedin,upload.array('image'), catchAsync( async(req, res) => {
     const data = req.body;
+    console.log(data);
     const post = new Events();
     post.message = data.Event.message;
     post.title = data.Event.title;   
