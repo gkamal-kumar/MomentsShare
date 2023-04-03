@@ -30,7 +30,6 @@ router.get('/new',isLoggedin, catchAsync( async(req, res) => {
 
 router.post('/',isLoggedin,upload.array('image'), catchAsync( async(req, res) => {
     const data = req.body;
-    console.log(data);
     const post = new Events();
     post.message = data.Event.message;
     post.title = data.Event.title;   
@@ -50,7 +49,7 @@ router.post('/',isLoggedin,upload.array('image'), catchAsync( async(req, res) =>
             }
         }
         us.Posts.push(post);
-        if (data[private] == 'on') {
+        if (data.private == 'on') {
             post.Status = "private";
         } else {
             post.Status = "public";
