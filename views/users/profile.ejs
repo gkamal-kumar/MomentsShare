@@ -17,21 +17,36 @@
                 <% if(user.profilepic){ %>
                     <img id="profilepic" src="<%= user.profilepic %>" alt="Profilepic"  class="mx-auto   my-auto  rounded ">
                 <% } %>
+
+
+                <% if(Curruser.username == user.username && user.profilepic) {%>
+                    <div style="display: flex;flex-direction: row;justify-content: center;">
+                        <div class="my-3 p-2 mx-2" >
+                                <a href="/users/addpic">Update Profile Picture</a>     
+                        </div>
+                        <div class="my-1 p-2">
+                            <form action="/users/addpic?_method=DELETE"  method="post">
+                                <button class="btn btn-primary my-2 p-2">Remove Profile pic</button>
+                            </form>
+                        </div>
+                    </div>
+                <% }%>
                 
             </div>
             <div class="col" id="Info">
-               <div class="container my-3">
-                    <h1 style="font-size: 2.5rem;"><%= user.username  %> </h1>
+               <div class="container my-3" style="padding:50px;">
+                    <h1 style="font-size: 2.5rem"><%= user.username  %> </h1>
                     <h5 class="text-muted" style="font-size: 1.5rem;padding-left:5%;"><%= user.bio %> </h5>
-                    <h5 class="text-muted" style="font-size: 1rem;padding-left:5%;"> <%= user.email %> </h5>
+                    <h5 class="text-muted" style="font-size: 1rem;"> <%= user.email %> </h5>
                 </div>
                 <ul>
                     <h4 class="my-2 text-primary">Friends: <%= Friends.length  %></h4>
-                    <% if(Curruser.username == user.username) {%>
-                    <% for(let friend of Friends){ %>
-                         <li><%= friend.username  %></li>
-                         <a href="/users/<%= friend._id  %>">Friend_Profile</a>
-                    <% } %>
+                    <div class="mx-auto">
+                        <% if(Curruser.username == user.username) {%>
+                        <% for(let friend of Friends){ %>
+                            <a class="link-dark" style="display:block" href="/users/<%= friend._id  %>"><%= friend.username  %></a>
+                        <% } %>
+                   </div>
                     <br>
                     <% } %>
                     <div class="container">
@@ -42,22 +57,15 @@
                         <% if(!user.Posts.length){ %>
                             <li class="text-muted  fw-light">No Posts</li>
                          <% } %>
+                        
                     </div>
+
                     <% if(Curruser.username == user.username){ %>
                         <div class="my-2">
                              <a class="mx-2 my-4" href="/users/edit/<%= user._id  %> ">Update Profile</a>
                         </div>
                     <% } %>
-                    <% if(Curruser.username == user.username && user.profilepic) {%>
-                            <div class="my-2 " >
-                                    <a href="/users/addpic">Update Profile Picture</a>     
-                            </div>
-                            <div class="my-2 ">
-                                <form action="/users/addpic?_method=DELETE"  method="post">
-                                    <button class="btn btn-primary my-2 p-2">Remove Profile pic</button>
-                                </form>
-                            </div>
-                    <% }%>
+                    
                 </ul>
             </div>   
         </div>
