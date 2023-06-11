@@ -88,6 +88,10 @@ app.use(flash());
 
 const passport = require('passport');
 
+app.use(function(req, res, next) {
+    res.setHeader('Cache-Control', 'no-cache, no-store');
+    next();
+  });
     
 app.use(async (req, res, next) => {
     var us = null;
