@@ -228,7 +228,17 @@ router.delete('/addpic', isLoggedin, catchAsync(async (req, res) => {
     res.redirect(`/users/${user._id}`);
 }))
 
-
+router.post('/remove', isLoggedin,async (req, res) => {
+    const { friend_id } = req.body;
+    const usname = req.session.passport.user;
+    const user = await User.findByUsername(usname);
+    const Connection = await Userconnect.findOne({ Curruser: user });
+    let reqUsers = Connection.requests;
+    const index = reqUsers.indexOf(friend_id);
+    reqUsers = reqUsers.splice(index, 1);
+    await Connection.save();
+    res.redirect('/users/add');
+})
 
 router.get('/:id', isLoggedin,catchAsync(async (req, res) => {
     const { id } = req.params;

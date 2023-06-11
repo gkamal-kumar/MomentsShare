@@ -5,7 +5,7 @@
         <h1 class="text-center my-4 bg-secondary bg-gradient fs-1 p-2 shadow-lg text-white border-rounded  ">Add a New Friend</h1>
         <% for(let user of allusers){ %>
             <% if(usn==null || usn.username !==user.username){ %>
-                <li>
+                <li class="mb-3">
                     <%= user.username %>
                 </li>
                      <% if(passport){ %>
@@ -25,4 +25,26 @@
                 <h6 class="text-muted fw-light">No more Users</h6>
             </div>
         <% } %>
+
+        <div class="container mt-3">
+            <h3 class="mt-5 mb-3">Requested Users</h3>
+            <% for(let user of reqUsers){ %>  
+                    <li class="mb-3">
+                        <%= user.username %>
+                    </li>
+                    <% if(user.Status == 'public'){ %>
+                        <a class="mt-8 p-2" style="display:block;"href="/users/<%= user._id  %>">Profile</a>
+                    <% } %>
+                    <form action="/users/remove" method="post">
+                        <input type="hidden" id="friend_id" name="friend_id" value="<%= user.id  %>">
+                        <button type="submit my-2" class="btn btn-primary">Remove</button>
+                    </form>
+            <% } %>
+            <% if(reqUsers.length == 0){ %>
+                <div class="container">
+                    <h6 class="text-muted fw-light">No Users</h6>
+                </div>
+            <% } %>
+        </div>
+
     </div>
