@@ -133,11 +133,13 @@ function requestuser(allconnects, user) {
 }
 router.get('/add',isLoggedin,catchAsync( async (req, res) => {
     let allusers = await User.find({});
-    let passport = usn = req.session.passport 
+    let passport = usn = req.session.passport;
+    let reqUsers;
     if (passport) {
         const user = passport.user;
         usn = await User.findOne({ username: user });
         const Connection = await Userconnect.find({ Curruser: usn }).populate('friends').populate('requests');
+        reqUsers = Connection[0].requests;
         const Friends = Connection[0].friends; 
         const requests = Connection[0].requests;
         const allConnections = await Userconnect.find({}).populate('requests').populate('Curruser');
@@ -148,7 +150,8 @@ router.get('/add',isLoggedin,catchAsync( async (req, res) => {
             allusers = allusers.filter(item => item.username != friend.username);
         }
     }
-    res.render('./users/addusers', { allusers ,passport ,usn });
+
+    res.render('./users/addusers', { allusers ,passport ,usn ,reqUsers });
 }))
 
 router.post('/add',isLoggedin,catchAsync( async (req, res) => {
