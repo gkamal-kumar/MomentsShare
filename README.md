@@ -1,3 +1,2 @@
 # MomentsShare
-ProjectKK allows you to share your posts with your community by tagging with your friends and family in the post and serves as a diary of memories.
-TechStack used  is mongodb for database in the back-end, express and node js as the server, and bootstrap for the front-end .
+MomentsShare is a web application which provides users an enjoyable experience in  sharing their posts, tagging friends and family, and creating a digital diary of cherished memories
